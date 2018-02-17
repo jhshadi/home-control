@@ -3,7 +3,12 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "node ./bin/www",
+    "build": "docker build -t jhshadi/home-control .",
+    "run": "docker run --net=host -e PORT='7070' --name=home-control jhshadi/home-control",
+    "exec": "docker run -it home-control bash",
+    "stop": "docker stop home-control",
+    "remove": "docker rm home-control"
   },
   "dependencies": {
     "body-parser": "~1.18.2",
