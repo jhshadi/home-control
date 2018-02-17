@@ -17,6 +17,7 @@ Small node (express) web server to control smart devices around my home.
 
 ### TODO
 - Add TV 'id' identifier
+- Add TV power on/off endpoint
 - Add ssl cert
 - API Updates:
   - REST API plurals convention
