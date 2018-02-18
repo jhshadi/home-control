@@ -1,8 +1,8 @@
 #!/bin/bash
 
 PORT=7070
-DOCKER_IMAGE="jhshadi/home-control"
 CONTAINER_NAME="home-control"
+DOCKER_IMAGE="jhshadi/$CONTAINER_NAME"
 
 echo "Cleaning old '$CONTAINER_NAME' container"
 docker stop home-control
