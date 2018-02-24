@@ -22,3 +22,4 @@ Small node (express) web server to control smart devices around my home.
 - API Updates:
   - REST API plurals convention
   - Clean unnecessary files
+- Add timetamp to logs and more informative logs
