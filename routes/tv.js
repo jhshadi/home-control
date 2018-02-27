@@ -15,6 +15,11 @@ const inputMap = {
     hdmi4: 'AAAAAgAAABoAAABdAw=='
 };
 
+const powerMap = {
+    on: 'AAAAAQAAAAEAAAAuAw==',
+    off: 'AAAAAQAAAAEAAAAvAw=='
+};
+
 router.get('/volume/level/:vol(\\d*)', function (req, res, next) {
     connect()
         .then(bravia => bravia.audio.invoke('setAudioVolume', '1.0', {target: 'speaker', volume: req.params.vol.toString()}))
@@ -25,9 +30,9 @@ router.get('/volume/level/:vol(\\d*)', function (req, res, next) {
         .then(() => res.send());
 });
 
-router.get('/volume/mute/:status(true|false)', function (req, res, next) {
+router.get('/volume/mute/:status(on|off)', function (req, res, next) {
     connect()
-        .then(bravia => bravia.audio.invoke('setAudioMute', '1.0', {status: req.params.status === 'true'}))
+        .then(bravia => bravia.audio.invoke('setAudioMute', '1.0', {status: req.params.status === 'on'}))
         .catch(err => {
             console.error(err);
             res.status(500);
@@ -43,7 +48,16 @@ router.get('/input/:type', function (req, res, next) {
             res.status(500);
         })
         .then(() => res.send());
+});
 
+router.get('/power/:status(on|off)', function (req, res, next) {
+    connect()
+        .then(bravia => bravia.send(powerMap[req.params.status]))
+        .catch(err => {
+            console.error(err);
+            res.status(500);
+        })
+        .then(() => res.send());
 });
 
 function connect() {

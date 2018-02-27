@@ -14,6 +14,7 @@ Small node (express) web server to control smart devices around my home.
 - /tv/volume/level/{1-100}
 - /tv/volume/mute/{on|off}
 - /tv/input/{tv|hdmi{1-4}}
+- /tv/power/{on|off}
 
 ### TODO
 - Add TV 'id' identifier
