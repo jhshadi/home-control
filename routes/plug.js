@@ -3,12 +3,7 @@ var router = express.Router();
 
 const miio = require('miio');
 
-const statusMapper = {
-    on: true,
-    off: false
-};
-
-router.get('/:pid(\\d+)/:state(on|off)', function (req, res, next) {
+router.get('/:pid(\\d+)/:status(on|off)', function (req, res, next) {
     const browser = miio.browse({
         cacheTime: 5
     });
@@ -24,10 +19,10 @@ router.get('/:pid(\\d+)/:state(on|off)', function (req, res, next) {
                 console.info('Connected to', device);
                 devices[reg.id] = device;
 
-                return device.power(statusMapper[req.params.state]);
+                return device.power(req.params.status === 'on');
             })
             .then(device => {
-                console.info('Setting plug ' + req.params.pid + ' to state: ' + req.params.state + "[" + device + "]");
+                console.info('Setting plug ' + req.params.pid + ' to status: ' + req.params.status + "[" + device + "]");
             })
             .catch(err => {
                 console.error(err);
