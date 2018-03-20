@@ -8,6 +8,7 @@ Small node (express) web server to control smart devices around my home.
 
 ### API
 ##### Plugs
+- /plugs/
 - /plugs/{plug_id}/{on|off}
 
 #### TVs
@@ -18,9 +19,6 @@ Small node (express) web server to control smart devices around my home.
 
 ### TODO
 - Add TV 'id' identifier
-- Add TV power on/off endpoint
+- Add TV power on endpoint
 - Add ssl cert
-- API Updates:
-  - REST API plurals convention
-  - Clean unnecessary files
-- Add timetamp to logs and more informative logs
+- Add more informative logs (timestamps etc)

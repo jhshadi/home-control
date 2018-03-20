@@ -3,6 +3,23 @@ var router = express.Router();
 
 const miio = require('miio');
 
+const DISCOVERY_TIMEOUT = 2 * 1000;
+
+router.get('/', function (req, res, next) {
+    const browser = miio.browse({
+        cacheTime: 5
+    });
+
+    browser.on('available', reg => {
+        console.info('Connected to', reg);
+    });
+
+    setTimeout(() => {
+        res.status(200).send();
+    }, DISCOVERY_TIMEOUT);
+});
+
+
 router.get('/:pid(\\d+)/:status(on|off)', function (req, res, next) {
     const browser = miio.browse({
         cacheTime: 5
@@ -41,7 +58,7 @@ router.get('/:pid(\\d+)/:status(on|off)', function (req, res, next) {
 
     setTimeout(() => {
         res.status(503).send();
-    }, 2 * 1000);
+    }, DISCOVERY_TIMEOUT);
 });
 
 module.exports = router;
